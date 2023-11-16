@@ -1,3 +1,25 @@
-* {
-  background-color: black;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1280px;
+  border: 5px solid black;
+}
+
+.calculator {
+  border: 5px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  height: 600px;
+}
+
+
+.result {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: end;
+  height: 36px;
+  border: 2px solid black;
 }
