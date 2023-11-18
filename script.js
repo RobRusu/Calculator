@@ -38,12 +38,23 @@ const btn = document.querySelectorAll('.display');
 btn.forEach((button) => {
   button.addEventListener('click', () =>{
     if (!operator){
-      number1 = number1 + button.textContent;
-      display.textContent = number1;
+      if (number1 === '0'){
+        number1 = button.textContent;
+        display.textContent = number1;
+      } else {
+        number1 = number1 + button.textContent;
+        display.textContent = number1;
+      }
     } else {
-      display.textContent = '';
-      number2 = number2 + button.textContent;
-      display.textContent = number2;
+      if(number2 === '0'){
+        display.textContent = '';
+        number2 = button.textContent;
+        display.textContent = number2;
+      } else {
+        display.textContent = '';
+        number2 = number2 + button.textContent;
+        display.textContent = number2;
+      }
     }
   })
 })
@@ -71,8 +82,10 @@ equal.addEventListener('click', () =>{
   if(number1 === '' || number2 === ''){
     display.textContent = 0;
     previousDisplay.textContent = 0 + ' ' + '='
+    number1 = '';
+    number2 = '';
   }else {
-    if (number2 === '0' & operator === '/'){
+    if (number2 === '0' && operator === '/'){
       display.textContent = 'nope';
       previousDisplay.textContent = number1 + ' ' + operator + ' ' + number2 + ' ' + '=';
     } else{
@@ -121,5 +134,153 @@ dot.addEventListener('click', () => {
     }
   }
 });
+
+const backspace = document.querySelector('.backspace');
+backspace.addEventListener('click', () =>{
+  if (!operator){
+    if(number1.length === 1){
+      number1 = '0';
+      display.textContent = number1;
+    } else{
+      number1 = number1.toString();
+      number1 = number1.slice(0, -1);
+      display.textContent = number1;
+    }
+  } else {
+    if(number2.length === 1){
+      number2 = '0';
+      display.textContent = number2;
+    } else{
+      number2 = number2.toString();
+      number2 = number2.slice(0, -1);
+      display.textContent = number2;
+    }
+  }
+});
+
+
+const negate = document.querySelector('.negate');
+negate.addEventListener('click', () =>{
+  if (!operator){
+    if(number1 < 0){
+      number1 = Math.abs(number1);
+      display.textContent = number1;
+    } else {
+      number1 = -Math.abs(number1);
+      display.textContent = number1;
+    }
+  } else {
+    if(number2 < 0){
+      number2 = Math.abs(number2);
+      display.textContent = number2;
+    } else {
+      number2 = -Math.abs(number2);
+      display.textContent = number2;
+    }
+  }
+});
+
+
+
+let numbers = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105]
+let operators = [189, 109, 191, 111, 107, 106]
+let dotKey = [190, 110];
+let equalKey = [187, 13];
+
+addEventListener('keydown', (key) => {
+  if (numbers.includes(key.keyCode)){
+    if (!operator){
+      if (number1 === '0'){
+        number1 = key.key;
+        display.textContent = number1;
+      } else {
+        number1 = number1 + key.key;
+        display.textContent = number1;
+      }
+    } else {
+      if(number2 === '0'){
+        display.textContent = '';
+        number2 = key.key;
+        display.textContent = number2;
+      } else {
+        display.textContent = '';
+        number2 = number2 + key.key;
+        display.textContent = number2;
+      }
+    }
+  } else if (operators.includes(key.keyCode)){
+    if (!operator){
+      operator = key.key;
+      previousDisplay.textContent = number1 + ' ' + operator;
+      } else {
+        number1 = operate(Number(number1), Number(number2), operator)
+        number2 = '';
+        display.textContent = number1;
+        operator = key.key;
+        previousDisplay.textContent = number1 + ' ' + operator;
+      }
+  } else if (dotKey.includes(key.keyCode)){
+    if (display.textContent === '0'){
+      display.textContent = display.textContent.concat('.')
+    } else{
+      switch (display.textContent.includes('.')){
+        case true:
+          break;
+        case false:
+          if (!operator){
+            number1 = number1 + key.key;
+            display.textContent = number1;
+          } else {
+            display.textContent = '';
+            number2 = number2 + key.key;
+            display.textContent = number2;
+          }
+          break;
+      }
+    }
+  } else if (equalKey.includes(key.keyCode)){
+    if(number1 === '' || number2 === ''){
+      display.textContent = 0;
+      previousDisplay.textContent = 0 + ' ' + '='
+      number1 = '';
+      number2 = '';
+    } else {
+      if (number2 === '0' && operator === '/'){
+        display.textContent = 'nope';
+        previousDisplay.textContent = number1 + ' ' + operator + ' ' + number2 + ' ' + '=';
+      } else{
+          result = operate(Number(number1), Number(number2), operator);
+          let lengthOfNumber = numberLength(result);
+          if (lengthOfNumber > 10) {
+            display.textContent = result.toFixed(10);
+            previousDisplay.textContent = number1 + ' ' + operator + ' ' + number2 + ' ' + '=';
+          } else if (lengthOfNumber > 0){
+            display.textContent = result;
+            previousDisplay.textContent = number1 + ' ' + operator + ' ' + number2 + ' ' + '=';
+          }
+        }
+      }
+  } else if (key.keyCode === 8){
+    if (!operator){
+      if(number1.length === 1){
+        number1 = '0';
+        display.textContent = number1;
+      } else{
+        number1 = number1.toString();
+        number1 = number1.slice(0, -1);
+        display.textContent = number1;
+      }
+    } else {
+      if(number2.length === 1){
+        number2 = '0';
+        display.textContent = number2;
+      } else{
+        number2 = number2.toString();
+        number2 = number2.slice(0, -1);
+        display.textContent = number2;
+      }
+    }
+  }
+})
 
 

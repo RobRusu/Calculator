@@ -5,32 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <div class="calculator">
+    <div class="title">
+      <p>Calculator 69420</p>
+    </div>
     <div class="result">
       <p class="previousResult"></p>
       <p class="currentResult"></p>
     </div>
     <div class="inputs">
-      <button class="display">1</button>
-      <button class="display">2</button>
-      <button class="display">3</button>
-      <button class="operator">+</button>
-      <button class="display">4</button>
-      <button class="display">5</button>
-      <button class="display">6</button>
-      <button class="operator">-</button>
-      <button class="display">7</button>
-      <button class="display">8</button>
-      <button class="display">9</button>
-      <button class="operator">*</button>
-      <button class="clear">Clear</button>
-      <button class="display">0</button>
-      <button class="equal">=</button>
-      <button class="operator">/</button>
-      <button class="dot">.</button>
+      <button class="secondary negate">+/-</button>
+      <button class="clear double secondary">Clear</button>
+      <button style="font-size:24px; width: 50%; background-color: rgb(161, 161, 161);" class="backspace"><i class="material-icons backspace">backspace</i></button>
+      <button class="display mainPad">1</button>
+      <button class="display mainPad">2</button>
+      <button class="display mainPad">3</button>
+      <button class="operator secondary">+</button>
+      <button class="display mainPad">4</button>
+      <button class="display mainPad">5</button>
+      <button class="display mainPad">6</button>
+      <button class="operator secondary">-</button>
+      <button class="display mainPad">7</button>
+      <button class="display mainPad">8</button>
+      <button class="display mainPad">9</button>
+      <button class="operator secondary">*</button>
+      <button class="dot mainPad">.</button>
+      <button class="display mainPad">0</button>
+      <button class="operator mainPad">/</button>
+      <button class="equal double secondary">=</button>
+    </div>
+    <div class="footer">
+      <p>Copyright</p>
+      <p>© 2023</p>
+      <p>Made by RobRusu</p>
+      <a href="https://github.com/RobRusu?tab=repositories" target="_blank"><i class="fa fa-github footer" style="font-size:48px;color:black"></i></a>
     </div>
   </div>
 </body>
