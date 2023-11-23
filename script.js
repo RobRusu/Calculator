@@ -182,15 +182,16 @@ negate.addEventListener('click', () =>{
 
 
 
-let numbers = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105]
-let operators = [189, 109, 191, 111, 107, 106]
-let dotKey = [190, 110];
-let equalKey = [187, 13];
+let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let operators = ['-', '+', '*', '/'];
 
 addEventListener('keydown', (key) => {
-  if (numbers.includes(key.keyCode)){
+  if (numbers.includes(Number(key.key))){
     if (!operator){
-      if (number1 === '0'){
+      if (display.textContent.includes('.')){
+        number1 = display.textContent + key.key;
+        display.textContent = number1;
+      } else if (number1 === '0'){
         number1 = key.key;
         display.textContent = number1;
       } else {
@@ -198,7 +199,17 @@ addEventListener('keydown', (key) => {
         display.textContent = number1;
       }
     } else {
-      if(number2 === '0'){
+      if (display.textContent.includes('.')){
+        if (number2 === '0'){
+          display.textContent = '';
+          number2 = number2 + '.' + key.key;
+          display.textContent = number2
+        } else {
+          display.textContent = '';
+          number2 = number2 + key.key;
+          display.textContent = number2;
+        }
+      } else if(number2 === '0'){
         display.textContent = '';
         number2 = key.key;
         display.textContent = number2;
@@ -208,7 +219,7 @@ addEventListener('keydown', (key) => {
         display.textContent = number2;
       }
     }
-  } else if (operators.includes(key.keyCode)){
+  } else if (operators.includes(key.key)){
     if (!operator){
       operator = key.key;
       previousDisplay.textContent = number1 + ' ' + operator;
@@ -219,7 +230,7 @@ addEventListener('keydown', (key) => {
         operator = key.key;
         previousDisplay.textContent = number1 + ' ' + operator;
       }
-  } else if (dotKey.includes(key.keyCode)){
+  } else if (key.key === '.'){
     if (display.textContent === '0'){
       display.textContent = display.textContent.concat('.')
     } else{
@@ -228,8 +239,8 @@ addEventListener('keydown', (key) => {
           break;
         case false:
           if (!operator){
-            number1 = number1 + key.key;
-            display.textContent = number1;
+              number1 = number1 + key.key;
+              display.textContent = number1;
           } else {
             display.textContent = '';
             number2 = number2 + key.key;
@@ -238,10 +249,15 @@ addEventListener('keydown', (key) => {
           break;
       }
     }
-  } else if (equalKey.includes(key.keyCode)){
-    if(number1 === '' || number2 === ''){
+  } else if (key.key === 'Enter'){
+    if(number1 === ''){
       display.textContent = 0;
       previousDisplay.textContent = 0 + ' ' + '='
+      number1 = '';
+      number2 = '';
+    } else if (number2 === ''){
+      display.textContent = number1;
+      previousDisplay.textContent = number1 + ' ' + '='
       number1 = '';
       number2 = '';
     } else {
@@ -260,7 +276,7 @@ addEventListener('keydown', (key) => {
           }
         }
       }
-  } else if (key.keyCode === 8){
+  } else if (key.key === 'Backspace'){
     if (!operator){
       if(number1.length === 1){
         number1 = '0';
