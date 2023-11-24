@@ -31,24 +31,28 @@ body {
 
 .inputs {
   display: flex;
+  flex-direction: column;
   flex: 1;
   height: 69%;
-  flex-wrap: wrap;
   background-color: rgb(111, 223, 130);
+  gap: 5px;
   margin-top: 5px;
-  justify-content: center;
 }
 
 .inputs button {
-  width: 23.8%;
+  width: 25%;
+}
+
+.rowZero, .rowOne, .rowTwo, .rowThree, .rowFour {
+  display: flex;
+  flex: 1;
+  gap: 5px;
 }
 
 button {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   border-radius: 20px;
-  margin-top: 3px;
-  margin-right: 3px;
 }
 
 .display.mainPad:hover, .dot.mainPad:hover, .operator.mainPad:hover {
