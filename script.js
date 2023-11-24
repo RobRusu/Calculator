@@ -38,7 +38,9 @@ const btn = document.querySelectorAll('.display');
 btn.forEach((button) => {
   button.addEventListener('click', () =>{
     if (!operator){
-      if (number1 === '0'){
+      if (display.textContent.length > 18){
+        display.textContent = number1;
+      } else if (number1 === '0'){
         number1 = button.textContent;
         display.textContent = number1;
       } else {
@@ -46,7 +48,9 @@ btn.forEach((button) => {
         display.textContent = number1;
       }
     } else {
-      if(number2 === '0'){
+      if (display.textContent.length > 18){
+        display.textContent = number2;
+      } else if (number2 === '0'){
         display.textContent = '';
         number2 = button.textContent;
         display.textContent = number2;
@@ -91,9 +95,8 @@ equal.addEventListener('click', () =>{
     } else{
         result = operate(Number(number1), Number(number2), operator);
         let lengthOfNumber = numberLength(result);
-        if (lengthOfNumber > 10) {
-          display.textContent = result.toFixed(10);
-          previousDisplay.textContent = number1 + ' ' + operator + ' ' + number2 + ' ' + '=';
+        if (display.textContent.length > 18){
+          display.textContent = 'number not supported';
         } else if (lengthOfNumber > 0){
           display.textContent = result;
           previousDisplay.textContent = number1 + ' ' + operator + ' ' + number2 + ' ' + '=';
