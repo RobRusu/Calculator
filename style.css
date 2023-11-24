@@ -2,8 +2,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1280px;
+  height: 80vh;
   background-color: rgb(65, 206, 60);
+  margin: 0;
 }
 
 .calculator {
@@ -97,7 +98,7 @@ button.secondary {
   justify-content: center;
   align-items: end;
   flex: 1;
-  height: 59%;
+  height: 40%;
   font-size: 20px;
 }
 
