@@ -51,6 +51,14 @@ button {
   margin-right: 3px;
 }
 
+.display.mainPad:hover, .dot.mainPad:hover, .operator.mainPad:hover {
+  background-color: rgb(51, 124, 51);
+}
+
+.operator.secondary:hover, .equal:hover, .secondary.negate:hover, .double:hover, .backspace.btn:hover {
+  background-color: rgb(100, 98, 98);
+}
+
 .previousResult, .currentResult{
   margin: 0;
 }

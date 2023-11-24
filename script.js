@@ -300,3 +300,12 @@ addEventListener('keydown', (key) => {
 })
 
 
+// background color for backspace
+
+const backspaceBtn = document.querySelector('.backspace');
+backspaceBtn.addEventListener('mouseover', ()=>{
+  backspaceBtn.style.backgroundColor = 'rgb(100, 98, 98)';
+})
+backspaceBtn.addEventListener('mouseout', () =>{
+  backspaceBtn.style.backgroundColor = 'rgb(161, 161, 161)';
+})
